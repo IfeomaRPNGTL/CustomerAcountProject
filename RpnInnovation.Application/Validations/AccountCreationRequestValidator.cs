@@ -17,7 +17,7 @@ namespace RpnInnovation.Application.Validations
                 .NotNull()
                 .MaximumLength(240);
             RuleFor(t => t.LastName)
-               .NotEmpty().WithMessage("Firstname cannot be empty.")
+               .NotEmpty().WithMessage("Lastname cannot be empty.")
                .NotNull()
                .MaximumLength(240);
 
