@@ -1,0 +1,6 @@
+@RpnInnovation.WebApi_HostAddress = http://localhost:5076
+
+GET {{RpnInnovation.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
