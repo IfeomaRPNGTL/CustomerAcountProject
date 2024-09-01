@@ -20,6 +20,10 @@ namespace RpnInnovation.Infrastructure.Persistence.SchemaDefinition
                 .HasPrecision(18, 2);
             builder.Property(x => x.LedgerBalance)
                 .HasPrecision(18, 2);
+            builder.Property(x => x.CreatedBy)
+           .HasMaxLength(250);
+            builder.Property(x => x.UpdatedBy)
+            .HasMaxLength(250);
         }
     }
 }

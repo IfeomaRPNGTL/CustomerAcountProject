@@ -10,9 +10,9 @@ using RpnInnovation.Infrastructure.Persistence.SchemaDefinition;
 
 namespace RpnInnovation.Infrastructure.Persistence
 {
-    public class AppContext : DbContext
+    public class AppDBContext : DbContext
     {
-        public AppContext(DbContextOptions options)
+        public AppDBContext(DbContextOptions options)
             :base(options) { }
         DbSet<Account> Account { get; set; }
         DbSet<Transaction> Transactions { get; set; }

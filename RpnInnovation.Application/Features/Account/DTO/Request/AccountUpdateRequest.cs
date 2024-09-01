@@ -10,6 +10,8 @@ namespace RpnInnovation.Application.Features.Account.DTO.Request
     public class AccountUpdateRequest
     {
         //public string? Email { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public string? Phone { get; set; }
         public AccountType? AccountType { get; set; }
     }

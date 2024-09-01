@@ -11,9 +11,9 @@ namespace RpnInnovation.Infrastructure.Persistence
 {
     public class CustomerReadRepository : ICustomerReadRepository
     {
-        private readonly AppContext _dbContext;
+        private readonly AppDBContext _dbContext;
         private readonly DbSet<CustomerAccount> _dbSet;
-        public CustomerReadRepository(AppContext dbContext)
+        public CustomerReadRepository(AppDBContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<CustomerAccount>();
@@ -25,12 +25,12 @@ namespace RpnInnovation.Infrastructure.Persistence
             try
             {
                 var count = await _dbSet.CountAsync(t => t.Email.ToLower().Equals(email.ToLower()));
-                if (count > 0) { return true; }
+                if (count == 0) { return true; }
                 return false;
             }
             catch (Exception ex)
             {
-                return true;
+                return false;
             }
         }
     }

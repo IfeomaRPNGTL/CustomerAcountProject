@@ -10,9 +10,9 @@ namespace RpnInnovation.Infrastructure.Persistence
 {
     public class Repository<T> : IUnitOfWork, IRepository<T> where T : class
     {
-        private readonly AppContext _dbContext;
+        private readonly AppDBContext _dbContext;
         private readonly DbSet<T> _dbSet;
-        public Repository(AppContext dbContext)
+        public Repository(AppDBContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();

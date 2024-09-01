@@ -13,9 +13,9 @@ namespace RpnInnovation.Infrastructure.Persistence
     /// </summary>
     public class ReadRepository<T> : IReadRepository<T> where T : class
     {
-        private readonly AppContext _dbContext;
+        private readonly AppDBContext _dbContext;
         private readonly DbSet<T> _dbSet;
-        public ReadRepository(AppContext dbContext)
+        public ReadRepository(AppDBContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();

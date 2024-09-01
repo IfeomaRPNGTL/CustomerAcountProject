@@ -21,25 +21,37 @@ namespace RpnInnovation.Application.Validations
                .NotNull()
                .MaximumLength(240);
 
-            RuleFor(t => t.Email)
-               .EmailAddress().WithMessage("Provide a valid email address.")
-               .NotNull()
-               .MaximumLength(250)
-               .MustAsync(IsUniqueEmail).WithMessage("Email exists use a different email.");
+            RuleFor(t => t.Bvn)
+                .NotEmpty().WithMessage("Bvn cannot be empty.")
+                .NotNull()
+                .Length(11);
+            
             RuleFor(t => t.Phone)
             .NotEmpty().WithMessage("Provide a phone number.")
             .NotNull()
             .MaximumLength(10);
-            _customerRepository = customerRepository;
+
+            RuleFor(t => t.Email)
+               .EmailAddress().WithMessage("Provide a valid email address.")
+               .NotNull()
+               .MaximumLength(250);
+
+            RuleFor(t => t)
+                .Must(t =>
+                {
+                    var result = IsUniqueEmail(t.Email);
+                    return result;
+                }).WithMessage("Email is not unique.");
+
         }
 
-        private async Task<bool> IsUniqueEmail(string email, CancellationToken token)
+        private bool IsUniqueEmail(string email)
         {
             try
             {
-                var doesNotExist = await _customerRepository.CheckCustomerDoesNotExistsByEmail(email);
-                if (doesNotExist) return false;
-                return true;
+                var doesNotExist = _customerRepository.CheckCustomerDoesNotExistsByEmail(email);
+                if (doesNotExist.Result) return true;
+                return false;
             }
             catch (Exception ex)
             {
